@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.example.mp.test.mapper.PlatformUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.example.mp.test.entity.PlatformUser">
+        <id column="USER_ID" property="userId" />
+        <result column="USER_NAME" property="userName" />
+        <result column="NICK_NAME" property="nickName" />
+        <result column="USER_PWD" property="userPwd" />
+        <result column="USER_SALT" property="userSalt" />
+        <result column="USER_TYPE" property="userType" />
+        <result column="USER_EMAIL" property="userEmail" />
+        <result column="ORG_ID" property="orgId" />
+        <result column="DEPT_ID" property="deptId" />
+        <result column="DEPT_NAME" property="deptName" />
+        <result column="ID_CARD" property="idCard" />
+        <result column="MOBILE" property="mobile" />
+        <result column="TELEPHONE" property="telephone" />
+        <result column="WEICHAT" property="weichat" />
+        <result column="ORG_PHONE" property="orgPhone" />
+        <result column="POST_CODE" property="postCode" />
+        <result column="ADDRESS" property="address" />
+        <result column="MARK" property="mark" />
+        <result column="PWD_UPDATE_TIME" property="pwdUpdateTime" />
+        <result column="RESET_FLAG" property="resetFlag" />
+        <result column="STOP_FLAG" property="stopFlag" />
+        <result column="STOP_TIME" property="stopTime" />
+        <result column="STOP_REASON" property="stopReason" />
+        <result column="LOCK_FLAG" property="lockFlag" />
+        <result column="SHORTCUT_FLAG" property="shortcutFlag" />
+        <result column="IP_BIND_FLAG" property="ipBindFlag" />
+        <result column="MAC_BIND_FLAG" property="macBindFlag" />
+        <result column="IP_BIND_NUM" property="ipBindNum" />
+        <result column="MAC_BIND_NUM" property="macBindNum" />
+        <result column="ROLE_NAMES" property="roleNames" />
+        <result column="CREATE_USERNAME" property="createUsername" />
+        <result column="CREATE_NICKNAME" property="createNickname" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="UPDATE_USERNAME" property="updateUsername" />
+        <result column="UPDATE_NICKNAME" property="updateNickname" />
+        <result column="UPDATE_TIME" property="updateTime" />
+        <result column="USER_DESC1" property="userDesc1" />
+        <result column="USER_DESC2" property="userDesc2" />
+        <result column="USER_DESC3" property="userDesc3" />
+        <result column="USER_DESC4" property="userDesc4" />
+        <result column="USER_DESC5" property="userDesc5" />
+        <result column="USER_DESC6" property="userDesc6" />
+        <result column="EXT1" property="ext1" />
+        <result column="EXT2" property="ext2" />
+        <result column="EXT3" property="ext3" />
+        <result column="EXT4" property="ext4" />
+        <result column="EXT5" property="ext5" />
+        <result column="EXT6" property="ext6" />
+        <result column="EXT7" property="ext7" />
+        <result column="EXT8" property="ext8" />
+        <result column="EXT9" property="ext9" />
+        <result column="EXT10" property="ext10" />
+        <result column="EXT11" property="ext11" />
+        <result column="EXT12" property="ext12" />
+        <result column="EXT13" property="ext13" />
+        <result column="EXT14" property="ext14" />
+        <result column="EXT15" property="ext15" />
+        <result column="EXT16" property="ext16" />
+        <result column="EXT17" property="ext17" />
+        <result column="EXT18" property="ext18" />
+        <result column="EXT19" property="ext19" />
+        <result column="EXT20" property="ext20" />
+        <result column="EXT21" property="ext21" />
+        <result column="EXT22" property="ext22" />
+        <result column="EXT23" property="ext23" />
+        <result column="EXT24" property="ext24" />
+        <result column="EXT25" property="ext25" />
+        <result column="EXT26" property="ext26" />
+        <result column="EXT27" property="ext27" />
+        <result column="EXT28" property="ext28" />
+        <result column="EXT29" property="ext29" />
+        <result column="EXT30" property="ext30" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        USER_ID, USER_NAME, NICK_NAME, USER_PWD, USER_SALT, USER_TYPE, USER_EMAIL, ORG_ID, DEPT_ID, DEPT_NAME, ID_CARD, MOBILE, TELEPHONE, WEICHAT, ORG_PHONE, POST_CODE, ADDRESS, MARK, PWD_UPDATE_TIME, RESET_FLAG, STOP_FLAG, STOP_TIME, STOP_REASON, LOCK_FLAG, SHORTCUT_FLAG, IP_BIND_FLAG, MAC_BIND_FLAG, IP_BIND_NUM, MAC_BIND_NUM, ROLE_NAMES, CREATE_USERNAME, CREATE_NICKNAME, CREATE_TIME, UPDATE_USERNAME, UPDATE_NICKNAME, UPDATE_TIME, USER_DESC1, USER_DESC2, USER_DESC3, USER_DESC4, USER_DESC5, USER_DESC6, EXT1, EXT2, EXT3, EXT4, EXT5, EXT6, EXT7, EXT8, EXT9, EXT10, EXT11, EXT12, EXT13, EXT14, EXT15, EXT16, EXT17, EXT18, EXT19, EXT20, EXT21, EXT22, EXT23, EXT24, EXT25, EXT26, EXT27, EXT28, EXT29, EXT30
+    </sql>
+
+</mapper>
