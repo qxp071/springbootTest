@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.net.URISyntaxException;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 public class JunitTest {
 
@@ -53,8 +56,13 @@ public class JunitTest {
         String gNo = "G"+"CIM"+replace+UUID.randomUUID().toString().substring(0,5);
         Map<String,String > paraMap = new HashMap<String,String>();
 
-        String fileName = "ff80808171beb8150171bede30290007.txt";
-        String fileFid = "wKgChF6npXaAS5t3AAJl5jFQsz8453.txt";
+      /*  String fileName = "ff80808171beb8150171bede30290007.txt";
+        String fileFid = "wKgChF6npXaAS5t3AAJl5jFQsz8453.txt";*/
+        String fileName = "404.png";
+        //String fileFid = "wKgChV6EN02Ad-FyAAD5QMTRD3M986.png";
+
+        String fileFid = "wKgB8F6ewIaAV4JXAAD5QMTRD3M711.png";
+
 
         paraMap.put("fileName",fileName);
         paraMap.put("fileFdfsName",fileFid);
@@ -184,19 +192,23 @@ public class JunitTest {
     @Test
     public void testIPUtil(){
 
-        int a = 123;
-        int i1 = a << 2;
-        System.out.println(i1);
+      /*  String v4IP = IpUtil.getV4IP();
+        System.out.println(v4IP);*/
 
+        String str = "hello word";
+        int w = str.indexOf("w");
+        System.out.println(w);
 
-        SnowFlake snowFlake = new SnowFlake(2,3);
-        long l = snowFlake.nextId();
-        System.out.println(l);
+        int w1 = str.indexOf('w');
+        System.out.println(w1);
 
 
     }
 
 
+    /**
+     * 布隆过滤器
+     */
     @Test
     public void testBloomFilter(){
 
@@ -224,6 +236,9 @@ public class JunitTest {
         System.out.println("误伤:"+count);
     }
 
+    /**
+     * 不能再forEach循环中对集合进行add/remove
+     */
     @Test
     public void testRemove(){
         List<String> ls = new ArrayList<String>();
@@ -250,8 +265,25 @@ public class JunitTest {
         }
     }
 
-    String s = new String("11");
+    @Test
+    public void testTreadPollManager(){
+        ThreadPoolManager.newInstance().addExecuteTask(()-> {
+            try {
+                PropertiesUtil.getProperties("config.properties");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
-    StringBuilder builder = new StringBuilder("12");
+
+        //任务队列指定大小Integer.MAX_VALUE，会出现OOM问题
+        ThreadPoolExecutor singleThreadExecutor = (ThreadPoolExecutor) Executors.newSingleThreadExecutor();
+        ExecutorService fixedThreadPool = Executors.newFixedThreadPool(10);
+        //最大线程数(maximumPoolSize)指定Integer.MAX_VALUE，会出现OOM
+        ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
+        ExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(20);
+
+    }
+
 
 }

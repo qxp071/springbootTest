@@ -5,12 +5,16 @@ import cn.example.mp.test.annotation.MyInterceptAnno;
 import cn.example.mp.test.common.MyException;
 import cn.example.mp.test.entity.Rule;
 import cn.example.mp.test.entity.User;
+import cn.example.mp.test.kafka.KafkaProducer;
 import cn.example.mp.test.mapper.UserMapper;
 import cn.example.mp.test.service.RuleService;
 import cn.example.mp.test.service.UserServiceImpl;
 import cn.example.mp.test.util.HttpClientUtil;
 import com.baomidou.mybatisplus.annotation.TableId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
@@ -27,8 +31,15 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/user")
+@Transactional(propagation = Propagation.NOT_SUPPORTED,rollbackFor =Exception.class )
 public class UserController {
 
+
+
+
+
+    @Autowired
+    private KafkaProducer kafkaProducer;
 
     @Autowired
     private UserServiceImpl userService;
@@ -42,7 +53,7 @@ public class UserController {
     @GetMapping("/getList")
     @ResponseBody
     @MyInterceptAnno
-    public List<User> getUserList() throws IllegalAccessException {
+    public List<User> getUserList(String a) throws IllegalAccessException {
         List<User> list = null;
         try {
             list = userService.list();
@@ -80,6 +91,8 @@ public class UserController {
     @GetMapping("/getHolle")
     @ResponseBody
     public String getHolleKit( ){
+
+        kafkaProducer.sendMsg("hellohellohellohe");
 
         return "hello";
     }

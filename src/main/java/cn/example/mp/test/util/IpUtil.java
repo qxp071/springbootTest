@@ -1,6 +1,10 @@
 package cn.example.mp.test.util;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 /**
  * @author: xianpei.qin
@@ -65,4 +69,32 @@ public class IpUtil {
         //或者这样也行,对于通过多个代理的情况，第一个IP为客户端真实IP,多个IP按照','分割
         return ipAddress;
     }
+    /**
+     * 获取真实外网地址
+     * @return
+     */
+    public static String getV4IP() {
+        String chinaz = "http://pv.sohu.com/cityjson?ie=utf-8";
+
+        String inputLine = "";
+        String read = "";
+        try {
+            URL url = new URL(chinaz);
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            while ((read = in.readLine()) != null) {
+                inputLine += read;
+            }
+            System.out.println(inputLine);
+            in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String reg = "\"";
+        String [] ss = inputLine.split(reg);
+        String ip = ss[3];
+        return ip;
+    }
+
 }
