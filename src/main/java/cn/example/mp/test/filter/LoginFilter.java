@@ -7,6 +7,11 @@ import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
 /**
+ * 自定义过滤器。
+ *  order为拦截执行优先级。字数越小，优先级越高。
+ *  urlPatterns：拦截路径。
+ *  filterName：过滤器名称
+ *
  * @author: xianpei.qin
  * @create: 2020-03-28 15:12
  **/

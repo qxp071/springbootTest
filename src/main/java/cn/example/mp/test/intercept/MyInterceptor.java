@@ -12,6 +12,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
 /**
+ * 自定义拦截器。判断有没有拦截注解。
  * @author: xianpei.qin
  * @create: 2020-03-28 15:34
  **/
