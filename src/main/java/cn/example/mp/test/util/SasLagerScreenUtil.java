@@ -1,6 +1,5 @@
 package cn.example.mp.test.util;
 
-import cn.csg.fc.csgf.logger.CsgfLogger;
 import cn.example.mp.test.constant.SasLagerScreenConst;
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
@@ -21,7 +20,7 @@ public class SasLagerScreenUtil {
 	/**
 	 * CSGF日志
 	 */
-	public static final CsgfLogger CSGF_LOGGER = CsgfLogger.getBusinessLogger();
+	//public static final CsgfLogger CSGF_LOGGER = CsgfLogger.getBusinessLogger();
 
 	/**
 	 * 私有构造器
