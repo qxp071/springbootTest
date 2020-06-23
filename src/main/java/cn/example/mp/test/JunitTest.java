@@ -19,6 +19,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
+@Test
 public class JunitTest {
 
     private static int total = 1000000;
@@ -282,6 +283,18 @@ public class JunitTest {
         //最大线程数(maximumPoolSize)指定Integer.MAX_VALUE，会出现OOM
         ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
         ExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(20);
+
+    }
+
+    public void testDate(){
+
+        //String yearOnYearTime = SasLagerScreenUtil.getYearOnYearTime("2020-05", "yyyy-MM", "yyyy-MM");
+        //System.out.println(yearOnYearTime);
+
+        String yearOnYearBeginTime = SasLagerScreenUtil.getYearOnYearBeginTime("2020-05", "yyyy-MM", "yyyy-MM");
+        System.out.println(yearOnYearBeginTime);
+        String lastDayOfLastYear = SasLagerScreenUtil.getLastDayOfLastYear("2020-05", "yyyy-MM", "yyyy-MM");
+        System.out.println(lastDayOfLastYear);
 
     }
 
