@@ -18,6 +18,7 @@ import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.stream.Collectors;
 
 @Test
 public class JunitTest {
@@ -299,4 +300,29 @@ public class JunitTest {
     }
 
 
+    public void testCon(){
+
+        List<String> aList = new ArrayList<>();
+        aList.add("1");
+        aList.add("2");
+        aList.add("3");
+        aList.add("4");
+
+        List<String> bList = new ArrayList<>();
+        bList.add("a");
+        bList.add("b");
+        bList.add("c");
+        bList.add("d");
+
+        List<String> cList = new ArrayList<>();
+        cList.add("1");
+        cList.add("a");
+
+        aList.addAll(bList);
+        aList.addAll(cList);
+        //去重
+        List<String> collect = aList.stream().distinct().collect(Collectors.toList());
+        collect.forEach(System.out::println);
+
+    }
 }
