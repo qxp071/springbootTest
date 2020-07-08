@@ -37,6 +37,11 @@ public class User extends Model<User> {
 
     private String rank;
 
+    public User(Integer id, String userName, String passWord) {
+        this.id = id;
+        this.userName = userName;
+        this.passWord = passWord;
+    }
 
     @Override
     protected Serializable pkVal() {
