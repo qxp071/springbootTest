@@ -38,13 +38,13 @@ public class UserController {
 
 
 
-    @Autowired
+    @Autowired(required = false)
     private KafkaProducer kafkaProducer;
 
     @Autowired
     private UserServiceImpl userService;
 
-    @Autowired
+    @Autowired(required = false)
     private UserMapper userMapper;
 
     @Autowired
