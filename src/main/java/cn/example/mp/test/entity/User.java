@@ -7,6 +7,11 @@ import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 
 /**
  * @Description: TODO
@@ -23,8 +28,11 @@ public class User extends Model<User> {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
+    @Size(message = "用户名不能为空")
     private String userName;
 
+    @NotNull(message = "密码不能为空")
+    @Length(min = 6,message = "密码长度必须是6位数字")
     private String passWord;
 
     private String realName;

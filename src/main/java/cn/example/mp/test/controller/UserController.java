@@ -21,6 +21,7 @@ import org.springframework.stereotype.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.lang.reflect.Field;
 import java.util.List;
 
@@ -29,7 +30,7 @@ import java.util.List;
  * @Author: xianpei.qin 
  * @Date: 2020/4/28 17:40
  */
-@Controller
+@RestController
 @RequestMapping("/user")
 @Transactional(propagation = Propagation.NOT_SUPPORTED,rollbackFor =Exception.class )
 public class UserController {
@@ -104,6 +105,13 @@ public class UserController {
         User user = userMapper.selectById("1");
 
         return user;
+    }
+
+    @PostMapping("saveUser")
+    @ResponseBody
+    private void saveUser(@Valid User user){
+
+        System.out.println("user="+user);
     }
 
 }
