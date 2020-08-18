@@ -10,7 +10,7 @@ public class ResultBody {
 
     private String message;
 
-    private Object result;
+    private Object data;
 
     public String getCode() {
         return code;
@@ -28,25 +28,41 @@ public class ResultBody {
         this.message = message;
     }
 
-    public Object getResult() {
-        return result;
+    public Object getData() {
+        return data;
     }
 
-    public void setResult(Object result) {
-        this.result = result;
+    public void setData(Object result) {
+        this.data = result;
     }
 
-    public static ResultBody success(){
+    public static ResultBody success(String message){
+        ResultBody resultBody = new ResultBody();
+        resultBody.setCode("1");
+        resultBody.setMessage(message);
+        return  resultBody;
+    }
+    public static ResultBody success(Object data){
         ResultBody resultBody = new ResultBody();
         resultBody.setCode("1");
         resultBody.setMessage("true");
+        resultBody.setData(data);
         return  resultBody;
     }
 
-    public static ResultBody error(){
+    public static ResultBody success(String message,Object data){
+        ResultBody resultBody = new ResultBody();
+        resultBody.setCode("1");
+        resultBody.setMessage(message);
+        resultBody.setData(data);
+        return  resultBody;
+    }
+
+
+    public static ResultBody error(String message){
         ResultBody resultBody  = new ResultBody();
         resultBody.setCode("-1");
-        resultBody.setMessage("error/400");
+        resultBody.setMessage(message);
         return resultBody;
 
     }

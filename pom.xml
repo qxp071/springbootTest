@@ -72,7 +72,6 @@
 			<artifactId>poi</artifactId>
 			<version>3.17</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
@@ -83,13 +82,12 @@
 			<artifactId>poi-ooxml-schemas</artifactId>
 			<version>3.17</version>
 		</dependency>
-
-	<!--	<dependency>
-			<groupId>cn.csg.fc.csgf</groupId>
-			<artifactId>csgflogger</artifactId>
-			<version>1.0-RELEASE</version>
+		<!--redis依赖-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-redis</artifactId>
+			<version>1.4.7.RELEASE</version>
 		</dependency>
--->
 		<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -170,12 +168,18 @@
 			<artifactId>aspectjweaver</artifactId>
 		</dependency>
 		<!--查看对象布局的工具-->
-		<!-- https://mvnrepository.com/artifact/org.openjdk.jol/jol-core -->
 		<dependency>
 			<groupId>org.openjdk.jol</groupId>
 			<artifactId>jol-core</artifactId>
 			<version>0.10</version>
 		</dependency>
+		<!--添加swagger api-->
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>1.5.22</version>
+		</dependency>
+
 
 
 	</dependencies>

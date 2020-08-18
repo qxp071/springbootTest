@@ -17,6 +17,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = MyException.class)
     public ResultBody bizException(){
 
-        return ResultBody.error();
+        return ResultBody.error("系统发生异常，请联系管理员！");
     }
 }

@@ -3,10 +3,12 @@ package cn.example.mp.test.controller;
 
 import cn.example.mp.test.annotation.MyInterceptAnno;
 import cn.example.mp.test.common.MyException;
+import cn.example.mp.test.common.ResultBody;
 import cn.example.mp.test.entity.Rule;
 import cn.example.mp.test.entity.User;
 import cn.example.mp.test.kafka.KafkaProducer;
 import cn.example.mp.test.mapper.UserMapper;
+import cn.example.mp.test.redis.JedisUtil;
 import cn.example.mp.test.service.RuleService;
 import cn.example.mp.test.service.UserServiceImpl;
 import cn.example.mp.test.util.HttpClientUtil;
@@ -18,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
+import redis.clients.jedis.Jedis;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,17 +38,12 @@ import java.util.List;
 @Transactional(propagation = Propagation.NOT_SUPPORTED,rollbackFor =Exception.class )
 public class UserController {
 
-
-
-
-
     @Autowired(required = false)
     private KafkaProducer kafkaProducer;
 
     @Autowired
     private UserServiceImpl userService;
 
-    @Autowired(required = false)
     private UserMapper userMapper;
 
     @Autowired
@@ -54,7 +52,7 @@ public class UserController {
     @GetMapping("/getList")
     @ResponseBody
     @MyInterceptAnno
-    public List<User> getUserList(String a) throws IllegalAccessException {
+    public ResultBody getUserList(String a) throws IllegalAccessException {
         List<User> list = null;
         try {
             list = userService.list();
@@ -86,7 +84,7 @@ public class UserController {
         }catch (Exception e){
             System.out.println(e.toString());
         }
-        return list;
+        return ResultBody.success(list);
     }
 
     @GetMapping("/getHolle")
@@ -102,7 +100,12 @@ public class UserController {
     @ResponseBody
     private User getUserTest(){
 
-        User user = userMapper.selectById("1");
+        String userName = JedisUtil.get("userName");
+        Jedis jedis = JedisUtil.getJedis();
+        System.out.println(userName);
+
+        User user = new User();
+        user.setUserName(userName);
 
         return user;
     }
