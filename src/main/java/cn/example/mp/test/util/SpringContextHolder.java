@@ -10,9 +10,11 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 /**
- * 以静态变量保存Spring ApplicationContext, 可在任何代码任何地方任何时候取出ApplicaitonContext.
- *
- */
+ * @Description 以静态变量保存Spring ApplicationContext,
+ * 可在任何代码任何地方任何时候取出ApplicaitonContext.
+ * @Author xianpei.qin
+ * @Date 2020.08.20 10.27
+ **/
 @Service
 @Lazy(false)
 public class SpringContextHolder implements ApplicationContextAware, DisposableBean {

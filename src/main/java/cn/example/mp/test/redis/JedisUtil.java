@@ -8,7 +8,11 @@ import org.slf4j.LoggerFactory;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-
+/**
+ * @Description jedisUtil工具类
+ * @Author xianpei.qin
+ * @Date 2020.08.20 10.20
+ **/
 public class JedisUtil {
 
     private static Logger logger = LoggerFactory.getLogger(JedisUtil.class);

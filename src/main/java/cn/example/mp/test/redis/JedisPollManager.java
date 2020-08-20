@@ -6,7 +6,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
-
+/**
+ * @Description jiedis连接池管理，用@Value从配置文件中读取redis相关配置。
+ * 创建一个单例的连接池，用@Bean将它交给spring管理，使用时从spring容器中取出
+ * @Author xianpei.qin
+ * @Date 2020.08.20 10.24
+ **/
 @Configuration
 @EnableAutoConfiguration
 public class JedisPollManager {
