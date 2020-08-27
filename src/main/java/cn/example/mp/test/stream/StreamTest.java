@@ -1,6 +1,6 @@
 package cn.example.mp.test.stream;
 
-import cn.example.mp.test.entity.User;
+import cn.example.mp.test.web.entity.User;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;

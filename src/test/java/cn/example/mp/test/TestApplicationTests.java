@@ -1,7 +1,7 @@
 package cn.example.mp.test;
 
-import cn.example.mp.test.entity.User;
-import cn.example.mp.test.mapper.UserMapper;
+import cn.example.mp.test.web.entity.User;
+import cn.example.mp.test.web.mapper.UserMapper;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
