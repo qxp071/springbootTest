@@ -325,4 +325,79 @@ public class JunitTest {
         collect.forEach(System.out::println);
 
     }
+
+
+    /**
+     * 斐波那契数列递归实现求n位数：1 1 2 3 5 8 13 21 34
+     */
+    public void TestRecursion(){
+
+       int result = TestRecursion(4);
+        System.out.println(result);
+
+    }
+
+    /**
+     * 递归斐波那契方法实现
+     * @param num
+     * @return
+     */
+    public  int TestRecursion(int num){
+        if(num<=2){
+            return 1;
+        }
+        int a = TestRecursion(num - 1);
+        int b = TestRecursion(num - 2);
+        int  result = a+b;
+        return result;
+
+    }
+
+    /**
+     * 二分查找测试
+     *
+     */
+    public void testSearchFun(){
+
+        int [] arr = {234,245,77,3,543,67,78,9999,378,678,205,753,457,2903,340};
+        int searchWord = 378;
+        binarySearch(arr,searchWord);
+
+    }
+
+    /**
+     * for循环二分查找实现
+     * @param arr
+     * @param searchWord
+     */
+    public void binarySearch(int[] arr,int searchWord){
+
+        int startIndex = 0;
+        int endIndex = arr.length-1;
+        int currentIndex = 0;
+        //对数组排序
+        Arrays.sort(arr);
+        System.out.println("排序后的数组="+Arrays.toString(arr));
+        for(int i = 0 ; i<arr.length/2 ;i++){
+            currentIndex = (startIndex+endIndex)/2;
+
+            if(arr[currentIndex]>searchWord){
+                endIndex = currentIndex-1;
+            }
+            if(arr[currentIndex]<searchWord){
+                startIndex = currentIndex+1;
+            }
+            if(arr[currentIndex]==searchWord){
+                System.out.println("!警告！第"+(i+1)+"次，找到元素"+searchWord);
+                break;
+            }else {
+                System.out.println();
+                //System.out.println("第"+(i+1)+"次，没找到元素。中位元素"+arr[currentIndex]+"。起始元素："+arr[startIndex]+"。末尾元素："+arr[endIndex]);
+                System.out.println("第"+(i+1)+"次，没找到元素");
+            }
+
+        }
+
+    }
+
 }
