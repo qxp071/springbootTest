@@ -332,7 +332,7 @@ public class JunitTest {
      */
     public void TestRecursion(){
 
-       int result = TestRecursion(4);
+       int result = Recursion(4);
         System.out.println(result);
 
     }
@@ -342,12 +342,12 @@ public class JunitTest {
      * @param num
      * @return
      */
-    public  int TestRecursion(int num){
+    public  int Recursion(int num){
         if(num<=2){
             return 1;
         }
-        int a = TestRecursion(num - 1);
-        int b = TestRecursion(num - 2);
+        int a = Recursion(num - 1);
+        int b = Recursion(num - 2);
         int  result = a+b;
         return result;
 
@@ -400,4 +400,23 @@ public class JunitTest {
 
     }
 
+    public void testFactorial(){
+        int factorial = factorial(4);
+        System.out.println(factorial);
+    }
+
+
+    /**
+     * N！阶乘的递归方法实现
+     * @param n
+     * @return
+     */
+    public int factorial(int n) {
+        if(n<=1){
+            return n;
+        }else {
+            return n*factorial(n-1);
+        }
+
+    }
 }
