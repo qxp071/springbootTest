@@ -36,6 +36,13 @@ public class ResultBody {
         this.data = result;
     }
 
+    public static ResultBody success(){
+        ResultBody resultBody = new ResultBody();
+        resultBody.setCode("1");
+        resultBody.setMessage("请求成功");
+        return  resultBody;
+    }
+
     public static ResultBody success(String message){
         ResultBody resultBody = new ResultBody();
         resultBody.setCode("1");
@@ -63,6 +70,14 @@ public class ResultBody {
         ResultBody resultBody  = new ResultBody();
         resultBody.setCode("-1");
         resultBody.setMessage(message);
+        return resultBody;
+
+    }
+
+    public static ResultBody error(){
+        ResultBody resultBody  = new ResultBody();
+        resultBody.setCode("-1");
+        resultBody.setMessage("请求失败");
         return resultBody;
 
     }

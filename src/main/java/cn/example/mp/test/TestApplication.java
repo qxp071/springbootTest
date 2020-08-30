@@ -7,7 +7,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @SpringBootApplication
-@MapperScan("cn.example.mp.test.web.mapper")
+@MapperScan("cn.example.mp.test.*.mapper")
 @ServletComponentScan("cn.example.mp.test.filter")
 @EnableAspectJAutoProxy(exposeProxy = true)
 public class TestApplication {
