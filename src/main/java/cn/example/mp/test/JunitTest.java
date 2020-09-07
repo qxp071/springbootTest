@@ -18,6 +18,8 @@ import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Test
@@ -417,6 +419,39 @@ public class JunitTest {
         }else {
             return n*factorial(n-1);
         }
+
+    }
+
+    /**
+     * 正则表达式截取字符串中的数字
+     */
+    public void testStr(){
+
+        String str = "fsaf{1111}fdsfsgt{9999}fhbcbcjjy{5555}fstshs";
+        //方法1:此正则表达式的意思是匹配非0-9的字符串
+        String reg = "[^0-9]";
+        Pattern p = Pattern.compile(reg);
+        String[] split = str.split("}");
+        for (int i = 0 ; i <split.length ; i++){
+            System.out.println(split[i]);
+            Matcher matcher = p.matcher(split[i]);
+            //匹配出非0-9的字符串，全部替换成”“，然后去空格
+            String trim = matcher.replaceAll("").trim();
+            System.out.println(trim);
+        }
+
+
+        //方法二：此正则的匹配数字，+号表示多位。
+       String regEx = "\\d+";
+        Pattern p2 = Pattern.compile(regEx);
+        Matcher m = p2.matcher(str);
+        while (m.find()){
+            if(!"".equals(m.group())){
+                System.out.println(m.group());
+            }
+        }
+
+
 
     }
 }
