@@ -19,7 +19,7 @@ public class MpGenerator {
         config.setActiveRecord(true)//开启AR模式
                 .setAuthor("xianpei.qin")//设置作者
                 //生成路径(一般都是生成在此项目的src/main/java下面)
-                .setOutputDir("E:\\test\\src\\main\\java")
+                .setOutputDir("D:\\PROJECT\\springbootTest\\src\\main\\java")
                 .setFileOverride(true)//第二次生成会把第一次生成的覆盖掉
                 .setIdType(IdType.AUTO)//主键策略
                 .setServiceName("%sService")//生成的service接口名字首字母是否为I，这样设置就没有I
@@ -39,10 +39,10 @@ public class MpGenerator {
                 .setNaming(NamingStrategy.underline_to_camel)//下划线到驼峰的命名方式
                 .setTablePrefix("tb_")//表名前缀
                 .setEntityLombokModel(true)//使用lombok
-                .setInclude("sys_log");//逆向工程使用的表
+                .setInclude("t_enum","t_enum_value");//逆向工程使用的表
         //4、包名策略配置
         PackageConfig packageConfig = new PackageConfig();
-        packageConfig.setParent("cn.example.mp.test.sys")//设置包名的parent
+        packageConfig.setParent("cn.example.mp.test.web")//设置包名的parent
                 .setMapper("mapper")
                 .setService("service")
                 .setController("controller")

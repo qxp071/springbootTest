@@ -7,7 +7,6 @@ import cn.example.mp.test.web.entity.User;
 import cn.example.mp.test.kafka.KafkaProducer;
 import cn.example.mp.test.web.mapper.UserMapper;
 import cn.example.mp.test.redis.JedisUtil;
-import cn.example.mp.test.web.service.RuleService;
 import cn.example.mp.test.web.service.impl.UserServiceImpl;
 import com.baomidou.mybatisplus.annotation.TableId;
 import org.springframework.aop.framework.AopContext;
@@ -41,8 +40,6 @@ public class UserController {
 
     private UserMapper userMapper;
 
-    @Autowired
-    private RuleService ruleService;
 
     @Autowired
     private ApplicationContext applicationContext;
