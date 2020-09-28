@@ -454,4 +454,28 @@ public class JunitTest {
 
 
     }
+
+    /**
+     * 写出byte数组
+     * @throws IOException
+     */
+    public void testWrite() throws IOException {
+
+//        byte[] templateContent = template.getTemplateContent();
+        byte[] templateContent = new byte[1024];
+
+        File tempFile = new File("D:\\templateContent.xml");
+        FileOutputStream fos = null;
+        try {
+            tempFile.createNewFile();
+            fos = new FileOutputStream(tempFile);
+            fos.write(templateContent,0,templateContent.length);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            fos.flush();
+            fos.close();
+        }
+
+    }
 }
