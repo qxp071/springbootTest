@@ -14,6 +14,11 @@ import org.testng.annotations.Test;
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.net.URISyntaxException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -476,6 +481,13 @@ public class JunitTest {
             fos.flush();
             fos.close();
         }
+
+    }
+
+    public void testLocalDateTime(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String dateTime = LocalDateTime.now(ZoneOffset.of("+8")).format(formatter);
+        System.out.println(dateTime.substring(0,dateTime.length()-3));
 
     }
 }
