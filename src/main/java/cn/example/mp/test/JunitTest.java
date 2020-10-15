@@ -485,9 +485,34 @@ public class JunitTest {
     }
 
     public void testLocalDateTime(){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+      /*  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String dateTime = LocalDateTime.now(ZoneOffset.of("+8")).format(formatter);
-        System.out.println(dateTime.substring(0,dateTime.length()-3));
+        System.out.println(dateTime.substring(0,dateTime.length()-3));*/
+/*
+        String str = "<![CDATA[3级]]>";
+        String rgex = "\\[(.*?)\\]";
+        String substring = str.substring(str.lastIndexOf("[")+1, str.indexOf("]"));
+        System.out.println(substring);*/
+       /*  List<String> subUtil = getSubUtil(str, rgex);
+        subUtil.forEach(System.out::println);*/
+
+       String str2 = "高温 27℃";
+        String substring1 = str2.substring(str2.indexOf(" ")+1, str2.length());
+        System.out.println(substring1);
+
 
     }
+    public static List<String> getSubUtil(String soap,String rgex){
+        List<String> list = new ArrayList<String>();
+        Pattern pattern = Pattern.compile(rgex);// 匹配的模式
+        Matcher m = pattern.matcher(soap);
+        while (m.find()) {
+            int i = 1;
+            list.add(m.group(i));
+            i++;
+        }
+        return list;
+
+    }
+
 }
