@@ -9,6 +9,7 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +28,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-@Test
+
+@Listeners({ExtentTestNGIReporterListener.class})
 public class JunitTest {
 
     private static int total = 1000000;
@@ -294,6 +296,7 @@ public class JunitTest {
 
     }
 
+    @Test
     public void testDate(){
 
         //String yearOnYearTime = SasLagerScreenUtil.getYearOnYearTime("2020-05", "yyyy-MM", "yyyy-MM");
@@ -307,6 +310,7 @@ public class JunitTest {
     }
 
 
+    @Test
     public void testCon(){
 
         List<String> aList = new ArrayList<>();
@@ -337,6 +341,7 @@ public class JunitTest {
     /**
      * 斐波那契数列递归实现求n位数：1 1 2 3 5 8 13 21 34
      */
+    @Test
     public void TestRecursion(){
 
        int result = Recursion(4);
@@ -364,6 +369,7 @@ public class JunitTest {
      * 二分查找测试
      *
      */
+    @Test
     public void testSearchFun(){
 
         int [] arr = {234,245,77,3,543,67,78,9999,378,678,205,753,457,2903,340};
@@ -407,6 +413,7 @@ public class JunitTest {
 
     }
 
+    @Test
     public void testFactorial(){
         int factorial = factorial(4);
         System.out.println(factorial);
@@ -430,6 +437,7 @@ public class JunitTest {
     /**
      * 正则表达式截取字符串中的数字
      */
+    @Test
     public void testStr(){
 
         String str = "fsaf{1111}fdsfsgt{9999}fhbcbcjjy{5555}fstshs";
@@ -464,6 +472,7 @@ public class JunitTest {
      * 写出byte数组
      * @throws IOException
      */
+    @Test
     public void testWrite() throws IOException {
 
 //        byte[] templateContent = template.getTemplateContent();
@@ -483,7 +492,7 @@ public class JunitTest {
         }
 
     }
-
+    @Test
     public void testLocalDateTime(){
       /*  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String dateTime = LocalDateTime.now(ZoneOffset.of("+8")).format(formatter);
@@ -502,6 +511,7 @@ public class JunitTest {
 
 
     }
+    @Test
     public static List<String> getSubUtil(String soap,String rgex){
         List<String> list = new ArrayList<String>();
         Pattern pattern = Pattern.compile(rgex);// 匹配的模式
