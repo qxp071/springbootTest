@@ -1,5 +1,6 @@
 package cn.example.mp.test;
 
+import cn.example.mp.test.annotation.JTestAnno;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.ResourceCDN;
@@ -12,6 +13,7 @@ import org.testng.*;
 import org.testng.xml.XmlSuite;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.util.*;
 
 /**
@@ -161,11 +163,26 @@ public class ExtentTestNGIReporterListener implements IReporter {
                 if (name.length() == 0) {
                     name = result.getMethod().getMethodName();
                 }
+                //自定义注解中文备注测试方法
+                Object instance = result.getInstance();
+                Class<?> aClass1 = instance.getClass();
+                Method[] declaredMethods = aClass1.getDeclaredMethods();
+                String cnName = "";
+                for (Method declaredMethod : declaredMethods) {
+                    String name1 = declaredMethod.getName();
+                    if(name.equals(name1)){
+                        JTestAnno annotation = declaredMethod.getAnnotation(JTestAnno.class);
+                        if(annotation!=null){
+                            cnName = annotation.value();
+                            break;
+                        }
+                    }
+                }
                 if (extenttest == null) {
-                    test = extent.createTest(name);
+                    test = extent.createTest(name+"-"+cnName);
                 } else {
                     //作为子节点进行创建时，设置同父节点的标签一致，便于报告检索。
-                    test = extenttest.createNode(name).assignCategory(categories);
+                    test = extenttest.createNode(name+"-"+cnName).assignCategory(categories);
                 }
                 //test.getModel().setDescription(description.toString());
                 //test = extent.createTest(result.getMethod().getMethodName());

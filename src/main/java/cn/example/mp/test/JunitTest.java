@@ -1,4 +1,6 @@
 package cn.example.mp.test;
+import cn.example.mp.test.annotation.JTestAnno;
+import cn.example.mp.test.annotation.PropertyName;
 import cn.example.mp.test.constant.SystemConstant;
 import cn.example.mp.test.fileparam.FileResponse;
 import cn.example.mp.test.util.*;
@@ -53,6 +55,7 @@ public class JunitTest {
     }
 
     @Test
+    @JTestAnno("测试文件上传")
     public void fileDownLoadTest() throws IOException, URISyntaxException {
         String downloadUrl = "http://192.168.2.33:8091/api/bsp/fileManager/fileinfo/download";
         //17位时间格式 例:202004201139234
@@ -114,6 +117,7 @@ public class JunitTest {
     }
 
     @Test
+    @JTestAnno("测试文件下载")
     public void fileUploadTest() throws IOException {
 
         String uploadUrl = "http://192.168.2.33:8091/api/bsp/fileManager/fileinfo/upload";
@@ -152,6 +156,7 @@ public class JunitTest {
     }
 
     @Test
+    @JTestAnno("测试文件写出")
     public void testFileOut(){
 
         String result = "<reqID>40280a8171b437c80171b437c8cf0000</reqID><resCode>000000</resCode><resMsg>查询成功</resMsg>";
@@ -178,6 +183,7 @@ public class JunitTest {
     }
 
     @Test
+    @JTestAnno("测试截取时间")
     public void testDateSub(){
         String startDate  = "20200227";
         String endDate = "20200429";
@@ -194,6 +200,7 @@ public class JunitTest {
 
 
     @Test
+    @JTestAnno("无聊的测试")
     public void testIO(){
         String fileName = "ppppp"+".txt";
         String filePath = "E:\\aa";
@@ -221,6 +228,7 @@ public class JunitTest {
      * 布隆过滤器
      */
     @Test
+    @JTestAnno("测试布隆过滤器")
     public void testBloomFilter(){
 
         BloomFilter<Integer> bf = BloomFilter.create(Funnels.integerFunnel(), total,0.003);
@@ -251,6 +259,7 @@ public class JunitTest {
      * 不能再forEach循环中对集合进行add/remove
      */
     @Test
+    @JTestAnno("forEach循环中对集合进行add/remove")
     public void testRemove(){
         List<String> ls = new ArrayList<String>();
         ls.add("11");
@@ -297,6 +306,7 @@ public class JunitTest {
     }
 
     @Test
+    @JTestAnno("测试截取时间")
     public void testDate(){
 
         //String yearOnYearTime = SasLagerScreenUtil.getYearOnYearTime("2020-05", "yyyy-MM", "yyyy-MM");
@@ -342,6 +352,7 @@ public class JunitTest {
      * 斐波那契数列递归实现求n位数：1 1 2 3 5 8 13 21 34
      */
     @Test
+    @JTestAnno("斐波那契数列递归实现")
     public void TestRecursion(){
 
        int result = Recursion(4);
@@ -370,6 +381,7 @@ public class JunitTest {
      *
      */
     @Test
+    @JTestAnno("二分查找测试")
     public void testSearchFun(){
 
         int [] arr = {234,245,77,3,543,67,78,9999,378,678,205,753,457,2903,340};
@@ -414,6 +426,7 @@ public class JunitTest {
     }
 
     @Test
+    @JTestAnno("测试N的阶乘N!")
     public void testFactorial(){
         int factorial = factorial(4);
         System.out.println(factorial);
@@ -438,6 +451,7 @@ public class JunitTest {
      * 正则表达式截取字符串中的数字
      */
     @Test
+    @JTestAnno("测试正则表达式截取字符串中的数字")
     public void testStr(){
 
         String str = "fsaf{1111}fdsfsgt{9999}fhbcbcjjy{5555}fstshs";
