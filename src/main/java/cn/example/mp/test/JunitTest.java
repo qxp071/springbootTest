@@ -7,6 +7,12 @@ import cn.example.mp.test.util.*;
 import com.alibaba.fastjson.JSON;
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
+import com.xuggle.mediatool.IMediaReader;
+import com.xuggle.mediatool.IMediaWriter;
+import com.xuggle.mediatool.MediaListenerAdapter;
+import com.xuggle.mediatool.ToolFactory;
+import com.xuggle.mediatool.event.IAddStreamEvent;
+import com.xuggle.xuggler.IStreamCoder;
 import org.apache.commons.io.FileUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -536,6 +542,66 @@ public class JunitTest {
             i++;
         }
         return list;
+
+    }
+
+
+    /**
+     * 使用xuggle-xuggler-5.4.jar将mp3波特率转换测试
+     * 下载jar加入进项目，使用以下方法转换mp3波特率
+     * @throws FileNotFoundException
+     */
+    @Test
+    public  void testAudio() throws FileNotFoundException {
+
+        String filePath = "E:\\我和我的祖国.mp3";
+        String filePath2 = "E:\\今天是你的生日,中国.mp3";
+        String outputPath = "E:\\今天是你的生日.mp3";
+        File file = new File(filePath2);
+
+        convertToMP3(file,outputPath,128*1000);
+
+    }
+
+    /**
+     * @param input 需要改变的Mp3
+     * @param outputPath 改变后的目标文件输出路径
+     * @param kbps 改成的比特率值  要乘以1000
+     * @return
+     */
+    public static boolean convertToMP3(File input, String outputPath, int kbps) {
+        boolean result = false;
+        // 创建media reader
+        IMediaReader mediaReader = ToolFactory.makeReader(input.getPath());
+        // 创建media writer
+        IMediaWriter mediaWriter = ToolFactory.makeWriter(outputPath, mediaReader);
+
+        // 添加writer进reader，并创建输出文件
+        mediaReader.addListener(mediaWriter);
+
+        // 添加IMediaListner到writer，进行比特率的改变
+        mediaWriter.addListener(new MediaListenerAdapter() {
+            @Override
+            public void onAddStream(IAddStreamEvent event) {
+                IStreamCoder streamCoder = event.getSource().getContainer().getStream(event.getStreamIndex())
+                        .getStreamCoder();
+                streamCoder.setFlag(IStreamCoder.Flags.FLAG_QSCALE, false);
+                streamCoder.setBitRate(kbps);
+                streamCoder.setBitRateTolerance(0);
+            }
+        });
+
+        // 读流 并重新打包成新文件
+        try {
+            while (mediaReader.readPacket() == null) {
+                System.out.println("进行转码及重新打包");
+            }
+            result = true;
+        } catch (Exception e) {
+            result = false;
+            System.out.println(e);
+        }
+        return result;
 
     }
 
