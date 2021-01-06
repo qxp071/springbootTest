@@ -3,6 +3,7 @@ package cn.example.mp.test.web.controller;
 
 import cn.example.mp.test.annotation.MyInterceptAnno;
 import cn.example.mp.test.common.ResultBody;
+import cn.example.mp.test.util.ExcelUtil2;
 import cn.example.mp.test.web.entity.User;
 import cn.example.mp.test.kafka.KafkaProducer;
 import cn.example.mp.test.web.mapper.UserMapper;
@@ -12,6 +13,10 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +24,9 @@ import org.springframework.web.bind.annotation.*;
 import redis.clients.jedis.Jedis;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.lang.reflect.Field;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Description: TODO
@@ -172,6 +178,36 @@ public class UserController {
         userService.save(user);
     }
 
+    @GetMapping("testBigExcel")
+    public ResponseEntity testBigExcel() throws Exception {
+
+        HttpHeaders headers = new HttpHeaders();
+        String expFielName = new String(("测试导出"+".xlsx").getBytes("UTF-8"),"iso-8859-1");
+        headers.setContentDispositionFormData("attachment", expFielName);
+        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+        return new ResponseEntity(this.repExcel(), headers, HttpStatus.CREATED);
+
+    }
+
+    private byte[] repExcel() throws Exception {
+        List<Map> list = new ArrayList<>();
+        //循环造10万条数据
+        for(int i=0;i<=1000000;i++){
+            Map userMap = new LinkedHashMap();
+            User user = new User(i, "zhangsan" + i, "123456"+i, "zhangsan"+i, "广州中山"+i, "15088789763"+i, "1", "1");
+            userMap.put("id", user.getId());
+            userMap.put("userName", user.getUserName());
+            userMap.put("pwd", user.getPassWord());
+            userMap.put("realName", user.getRealName());
+            userMap.put("address", user.getAddress());
+            userMap.put("phone", user.getPhone());
+            userMap.put("state", user.getState());
+            userMap.put("rank", user.getRank());
+            list.add(userMap);
+        }
+        String[] columnTitles = { "id", "昵称", "密码","真名", "地址", "电话", "状态", "备注"};
+        return ExcelUtil2.buildExcelSXSS(columnTitles,list);
+    }
 
 
 

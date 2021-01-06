@@ -10,6 +10,7 @@ import lombok.experimental.Accessors;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 
@@ -53,6 +54,16 @@ public class User extends Model<User> {
         this.passWord = passWord;
     }
 
+    public User(Integer id,  String userName, String passWord, String realName, String address, String phone, String state, String rank) {
+        this.id = id;
+        this.userName = userName;
+        this.passWord = passWord;
+        this.realName = realName;
+        this.address = address;
+        this.phone = phone;
+        this.state = state;
+        this.rank = rank;
+    }
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
