@@ -38,6 +38,7 @@ public class LogThread extends Thread {
     @Override
     public void run() {
         try {
+            //取出日志，保存入库
             SysLog log = interceptorLogQueue.take();
             logThread.sysLogService.save(log);
         } catch (InterruptedException e) {

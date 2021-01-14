@@ -7,9 +7,10 @@ import cn.example.mp.test.util.ThreadPoolManager;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 
 /**
- * @Description TODO
+ * @Description 将日志信息放入LogThread中的LinkedBlockingQueue队列中
  * @Author xianpei.qin
  * @date 2020/08/30 15:30
  */
@@ -22,6 +23,11 @@ public class LogUtil{
         log.setUserAgent(request.getHeader("user-agent"));
         log.setParams(request.getQueryString());
         log.setRemoteAddr(IpUtil.getIp2(request));
+        log.setCreateTime(LocalDateTime.now());
+        log.setCreatorId("1");
+        if(null!=ex){
+            log.setException(ex.toString());
+        }
         try {
             LogThread logThread = new LogThread();
             logThread.interceptorLogQueue.put(log);
